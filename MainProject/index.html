@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    main{
+        width: 100%;
+        height: 100vh;
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        position: relative;
+    }
+    main>div{
+        width: 350px;
+        height: 150px;
+        position: relative;
+    }
+    #mode{
+        width: 100%;
+        height: 20px;
+        position: absolute;
+        top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    section{
+        color: white;
+        cursor: pointer;
+        font-size: 12px;
+    }
+    section:nth-of-type(1){
+        margin-right: 10px;
+    }
+    section:nth-of-type(2){
+        border-left: 1px solid gray;
+        padding-left: 10px;
+
+    }
+    h3{
+        width: 100%;
+        height: 35px;
+        text-align: center;
+        font-size: 25px;
+        border-bottom: 1px solid rgb(77, 77, 77);
+        color: white;
+    }
+    input{
+        width: 100%;
+        border-radius: 5px;
+        height: 30px;
+        border: 1px solid gray;
+        padding: 10px;
+    }
+    div>div{
+        width: 1%;
+        height: 10px;
+        position: absolute;  
+        bottom: 0;
+        left: 0;
+        border-radius: 15px;
+        transition: .4s;
+    }
+    p{
+        text-align: center;
+        width: 100%;
+        height: 60px;
+        font-size: 14px;
+        margin-top: 2px;
+        color: white;
+        padding-top: 5px;
+    }
+</style>
+<body>
+    <main id="main">
+        <div id="mode">
+            <section id="light">Light</section>
+            <section id="dark">Dark</section>
+        </div>
+        <div>
+            <h3 id="h3">Test your password power</h3>
+            <p id="p">for having a powerful password pick number and symbol and at least 8 digits</p>
+            <input id="inp" type="text">
+            <div id="box"></div>
+        </div>
+    </main>
+</body>
+<script>
+    
+    let x
+
+    document.getElementById('inp').addEventListener('input', function(){
+        x = this.value
+        console.log(x)
+        if(
+            ((x.search(/[a-z]/i))>-1) || ((x.search(/[0-9]/i))>-1) || ((x.search(/[!@#$%^&*]/i))>-1)
+        ){
+            document.getElementById('box').style.background='red'
+            document.getElementById('box').style.width='33%'
+        }else{
+            document.getElementById('box').style.background='transparent'
+            document.getElementById('box').style.width='0'
+        }
+        if(
+            (((x.search(/[a-z]/i))>-1) && (((x.search(/[0-9]/i))>-1))) || ((((x.search(/[a-z]/i))>-1) && (((x.search(/[!@#$%^&*]/i))>-1)))) || (((x.search(/[!@#$%^&*]/i))>-1) && (((x.search(/[0-9]/i))>-1)))
+        ){
+            document.getElementById('box').style.background='orange'
+            document.getElementById('box').style.width='66%'
+        }
+        if(((x.search(/[a-z]/i))>-1) && (((x.search(/[0-9]/i))>-1)) && (((x.search(/[!@#$%^&*]/i))>-1)) && (x.length>7)){
+            document.getElementById('box').style.background='green'
+            document.getElementById('box').style.width='100%'
+        }
+    })
+
+
+    document.getElementById('light').addEventListener('click', function(){
+        document.getElementById('main').style.background='white'
+        document.getElementById('p').style.color='black'
+        document.getElementById('h3').style.color='black'
+        document.getElementById('dark').style.color='black'
+        document.getElementById('light').style.color='black'
+    })
+
+
+    document.getElementById('dark').addEventListener('click', function(){
+        document.getElementById('main').style.background='black'
+        document.getElementById('p').style.color='white'
+        document.getElementById('h3').style.color='white'
+        document.getElementById('dark').style.color='white'
+        document.getElementById('light').style.color='white'
+    })
+
+</script>
+</html>
